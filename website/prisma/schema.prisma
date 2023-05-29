@@ -1,0 +1,57 @@
+generator client {
+    provider     = "prisma-client-js"
+    transactions = false
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DB_CONNSTR")
+}
+
+// model ID {
+//     id String @id @default(auto()) @map("_id") @db.ObjectId
+// }
+
+enum ServiceType {
+    RECIEVER
+    SUPPLIER
+}
+
+model Volunteer {
+    id          String    @id @default(auto()) @map("_id") @db.ObjectId
+    email       String    @unique
+    password    String
+    name        String
+    balance     Int
+    description String
+    service     Service[]
+}
+
+model Transaction {
+    id     String @id @default(auto()) @map("_id") @db.ObjectId
+    name   String
+    amount Int
+    date   String
+    fromId String @db.ObjectId
+    toId   String @db.ObjectId
+}
+
+model Service {
+    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String
+    type        ServiceType
+    price       Int
+    volunteer   Volunteer?  @relation(fields: [volunteerId], references: [id])
+    volunteerId String?     @db.ObjectId
+    message     Message[]
+}
+
+model Message {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    text      String
+    fromId    String   @db.ObjectId
+    toId      String   @db.ObjectId
+    service   Service? @relation(fields: [serviceId], references: [id])
+    serviceId String?  @db.ObjectId
+}
