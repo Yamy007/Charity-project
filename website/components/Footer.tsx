@@ -15,16 +15,16 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
             <p className="text-center text-sm leading-loose md:text-left">
                 Built by{' '}
                 <a
-                    href="https://github.com/Oleshkooo/best-hackathon"
+                    href="https://yamy007-portfolio.netlify.app/"
                     target="_blank"
                     rel="noreferrer"
                     className="font-medium underline underline-offset-4"
                 >
-                    503 Team
+                    Yaroslav
                 </a>
                 . The source code is available on{' '}
                 <a
-                    href="https://github.com/Oleshkooo/best-hackathon"
+                    href="https://github.com/Yamy007/Charity-project"
                     target="_blank"
                     rel="noreferrer"
                     className="font-medium underline underline-offset-4"
